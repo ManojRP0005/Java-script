@@ -83,14 +83,23 @@ findLastCar()
 
 // // ==== Problem #3 ====
 const alphabeticallySort=()=>{
-    var s=[]
-    inventory.forEach(element => {
-        s.push(element.car_model)
-    });
-    return s.sort()
+    for(let i=0;i<inventory.length;i++)
+    {
+       for(let j=i+1;j<inventory.length;j++)
+       {
+           if(inventory[i].car_make > inventory[j].car_make)
+           {
+              let temp = inventory[i]
+               inventory[i]=inventory[j]
+               inventory[j]=temp
+           }
+       }
+    }
 }
-alpha=alphabeticallySort()
-console.log(alpha)
+alphabeticallySort()
+inventory.forEach(c => {
+  console.log(c.car_make);
+});
 
 // // ==== Problem #4 ====
 
@@ -121,10 +130,14 @@ console.log("cars are older than the year 2000 are:"+c)
 
 // // ==== Problem #6 ====
 const bmwAudi=()=>{
-   return cars=inventory.filter(x=>(
-    x.car_make=='BMW' || x.car_make=='Audi'
-   )) 
+   const d= [];
+  for (let i=0;i<inventory.length;i++){
+    if (inventory[i].car_make=="BMW" || inventory[i].car_make=="Audi") {
+      d.push(inventory[i]);
+    }
+  }
+  return d;
 }
 z=bmwAudi()
-res=JSON.stringify(cars,null,2)
+res=JSON.stringify(z,null,2)
 console.log(res)
